@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block contenido %}
+
+{% if articulo %}
+    <h2>Modificar artículo</h2>
+{% else %}
+    <h2>Insertar artículo</h2>
+{% endif %}
+
+<form method="POST">
+
+    <label for="nombre_comercial">
+        Nombre comercial:
+    </label>
+
+    <input type="text"
+           id="nombre_comercial"
+           name="nombre_comercial"
+           value="{{ articulo[1] if articulo else '' }}">
+
+    <br><br>
+
+    <label for="descripcion">
+        Descripción:
+    </label>
+
+    <textarea id="descripcion" name="descripcion">{{ articulo[2] or '' if articulo else '' }}</textarea>
+
+    <br><br>
+
+    <label for="precio_unitario">
+        Precio unitario:
+    </label>
+
+    <input type="text" id="precio_unitario" name="precio_unitario"
+           value="{{ articulo[3] if articulo else '' }}">
+
+    <br><br>
+
+    <label for="stock">
+        Stock:
+    </label>
+
+    <input type="text"
+           id="stock"
+           name="stock"
+           value="{{ articulo[4] if articulo else '' }}">
+
+    <br><br>
+
+    <button type="submit">
+        Guardar artículo
+    </button>
+
+    <a href="{{ url_for('listar_articulos') }}">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}

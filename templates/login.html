@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h2>Inicio de sesión</h2>
+{% with messages=get_flashed_messages() %}
+    {% if messages %}
+        {% for m in messages %}
+            <li>{{m}}</li>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form method="POST"
+      action="{{ url_for('login') }}">
+
+    <label for="usuario">
+        Usuario:
+    </label>
+
+    <input type="text"
+           id="usuario"
+           name="usuario">
+
+    <br><br>
+
+    <label for="password">
+        Contraseña:
+    </label>
+
+    <input type="password"
+           id="password"
+           name="password">
+
+    <br><br>
+
+    <button type="submit">
+        Iniciar sesión
+    </button>
+
+</form>
+
+<p>
+    ¿No tienes cuenta?
+    <a href="{{ url_for('registro') }}">
+        Regístrate
+    </a>
+</p>
+
+{% endblock %}

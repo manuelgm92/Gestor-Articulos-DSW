@@ -1,0 +1,73 @@
+
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h2>Listado de artículos</h2>
+
+<p>
+    <a href="{{ url_for('insertar_articulo') }}">
+        Insertar nuevo artículo
+    </a>
+</p>
+
+<table border="1" cellpadding="8">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre comercial</th>
+            <th>Descripción</th>
+            <th>Precio unitario</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for articulo in articulos %}
+
+        <tr>
+            <td>{{ articulo[0] }}</td>
+
+            <td>{{ articulo[1] }}</td>
+
+            <td>{{ articulo[2] }}</td>
+
+            <td>{{ articulo[3] }}</td>
+
+            <td>{{ articulo[4] }}</td>
+
+            <td>
+                <a href="{{ url_for('editar_articulo', id_articulo=articulo[0]) }}">
+                    Editar
+                </a>
+
+                <form method="POST"
+                      style="display:inline;"
+                      action="{{ url_for('eliminar_articulo', id_articulo=articulo[0]) }}"
+                      onsubmit="return confirm('¿Desea eliminar este artículo?');">
+
+                    <button type="submit">
+                        Eliminar
+                    </button>
+
+                </form>
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<p>
+<p>
+
+<a href="{{ url_for('logout') }}"> Salir </a>
+
+{% endblock %}
+
+
